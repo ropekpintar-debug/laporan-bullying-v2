@@ -2,25 +2,50 @@
 <html>
 <head>
 <title>Laporan Bullying</title>
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f0f2f5;
+padding:20px;
+}
+.container{
+background:white;
+max-width:600px;
+margin:auto;
+padding:20px;
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+input,textarea{
+width:100%;
+padding:10px;
+margin-top:5px;
+margin-bottom:15px;
+}
+button{
+padding:10px 20px;
+}
+</style>
 </head>
 <body>
+
+<div class="container">
 <h1>Laporan Bullying</h1>
 
-<form>
-Nama (Opsional)<br>
-<input type="text"><br><br>
+<label>Nama (Opsional)</label>
+<input type="text">
 
-Kelas<br>
-<input type="text"><br><br>
+<label>Kelas</label>
+<input type="text">
 
-Nama Terlapor<br>
-<input type="text"><br><br>
+<label>Nama Terlapor</label>
+<input type="text">
 
-Kronologi<br>
-<textarea rows="6"></textarea><br><br>
+<label>Kronologi</label>
+<textarea rows="6"></textarea>
 
-<button type="submit">Kirim Laporan</button>
-</form>
+<button>Kirim Laporan</button>
+</div>
 
 </body>
 </html>
