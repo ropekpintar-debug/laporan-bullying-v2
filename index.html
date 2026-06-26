@@ -379,9 +379,8 @@
       });
 
       if (res.ok) {
-        form.reset();
+        form.style.display = 'none';
         successMsg.style.display = 'block';
-        btn.textContent = '✅ Terkirim!';
       } else {
         btn.textContent = '❌ Gagal, coba lagi';
         btn.disabled = false;
