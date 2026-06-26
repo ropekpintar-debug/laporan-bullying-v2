@@ -198,14 +198,50 @@
 
   .success-msg {
     display: none;
-    background: #ecfdf5;
-    border: 1.5px solid #6ee7b7;
-    border-radius: 10px;
-    padding: 14px 16px;
-    color: #065f46;
-    font-size: 13.5px;
-    text-align: center;
+    border-radius: 16px;
+    overflow: hidden;
     margin-top: 16px;
+    text-align: center;
+  }
+
+  .success-top {
+    background: linear-gradient(135deg, #1a6ea8, #2ec4b6);
+    padding: 24px 20px;
+    color: white;
+  }
+
+  .big-emoji { font-size: 40px; margin-bottom: 10px; }
+
+  .success-top h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .success-top p {
+    font-size: 13px;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .success-messages {
+    background: #f8fafc;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .msg-bubble {
+    background: white;
+    border-left: 3px solid #2ec4b6;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #2d3748;
+    line-height: 1.6;
+    text-align: left;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
 </style>
 </head>
@@ -221,7 +257,7 @@
 
   <div class="card-body">
     <!-- GANTI YOUR_FORM_ID dengan ID dari Formspree kamu -->
-    <form id="reportForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form id="reportForm" action="https://formspree.io/f/xaqgoyzz" method="POST">
 
       <div class="field">
         <label>Nama <span class="optional">opsional</span></label>
@@ -303,7 +339,18 @@
       <button type="submit" class="btn-submit">🛡️ Kirim Laporan</button>
 
       <div class="success-msg" id="successMsg">
-        ✅ Laporan berhasil dikirim! Kami akan segera menindaklanjuti. Kamu tidak sendirian. 💙
+        <div class="success-top">
+          <div class="big-emoji">💙</div>
+          <h2>Laporan Berhasil Dikirim</h2>
+          <p>Butuh keberanian besar untuk melangkah seperti ini.<br>Kamu sudah melakukan hal yang benar.</p>
+        </div>
+        <div class="success-messages">
+          <div class="msg-bubble"><span class="emoji">🤝</span> <strong>Kamu tidak sendirian.</strong> Kami ada di sini dan siap membantumu melewati ini.</div>
+          <div class="msg-bubble"><span class="emoji">🛡️</span> <strong>Laporanmu aman.</strong> Identitasmu terjaga sepenuhnya dan hanya diketahui oleh OSIS & BK.</div>
+          <div class="msg-bubble"><span class="emoji">⏳</span> <strong>Kami akan segera menindaklanjuti</strong> laporanmu secepat mungkin.</div>
+          <div class="msg-bubble"><span class="emoji">💪</span> Ingat — yang terjadi padamu <strong>bukan salahmu.</strong> Kamu lebih kuat dari yang kamu kira.</div>
+          <div class="msg-bubble"><span class="emoji">🌱</span> Satu langkah kecil hari ini bisa mengubah segalanya. <strong>Terima kasih sudah berani bersuara.</strong></div>
+        </div>
       </div>
 
       <p class="footer-note">
