@@ -11,7 +11,7 @@
 
   body {
     font-family: 'Plus Jakarta Sans', Arial, sans-serif;
-    background: linear-gradient(135deg, #0f2942 0%, #1a4a6e 60%, #0d3d5c 100%);
+    background: linear-gradient(135deg, #2b0f08 0%, #7a2410 60%, #3d1004 100%);
     min-height: 100vh;
     padding: 30px 16px;
     display: flex;
@@ -29,9 +29,17 @@
   }
 
   .card-header {
-    background: linear-gradient(135deg, #1a6ea8, #2ec4b6);
-    padding: 28px 28px 24px;
+    background: linear-gradient(135deg, #d9531e, #f0792f);
+    padding: 24px 28px 24px;
     color: white;
+    text-align: center;
+  }
+
+  .logo-img {
+    width: 84px;
+    height: auto;
+    display: block;
+    margin: 0 auto 14px;
   }
 
   .shield-icon {
@@ -43,7 +51,7 @@
     align-items: center;
     justify-content: center;
     font-size: 22px;
-    margin-bottom: 14px;
+    margin: 0 auto 14px;
   }
 
   .card-header h1 {
@@ -95,6 +103,7 @@
   }
 
   input[type="text"],
+  input[type="tel"],
   select,
   textarea {
     width: 100%;
@@ -111,10 +120,11 @@
   }
 
   input[type="text"]:focus,
+  input[type="tel"]:focus,
   select:focus,
   textarea:focus {
-    border-color: #1a6ea8;
-    box-shadow: 0 0 0 3px rgba(26,110,168,0.1);
+    border-color: #d9531e;
+    box-shadow: 0 0 0 3px rgba(217,83,30,0.12);
     background: #fff;
   }
 
@@ -152,14 +162,14 @@
   }
 
   .checkbox-item:hover {
-    border-color: #1a6ea8;
-    background: #f0f7ff;
+    border-color: #d9531e;
+    background: #fff4ee;
   }
 
   .checkbox-item input[type="checkbox"] {
     width: 15px;
     height: 15px;
-    accent-color: #1a6ea8;
+    accent-color: #d9531e;
     flex-shrink: 0;
   }
 
@@ -172,7 +182,7 @@
   .btn-submit {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #1a6ea8, #2ec4b6);
+    background: linear-gradient(135deg, #d9531e, #f0792f);
     color: white;
     border: none;
     border-radius: 12px;
@@ -187,6 +197,7 @@
 
   .btn-submit:hover { opacity: 0.92; }
   .btn-submit:active { transform: scale(0.99); }
+  .btn-submit:disabled { cursor: not-allowed; opacity: 0.7; }
 
   .footer-note {
     text-align: center;
@@ -194,6 +205,78 @@
     color: #94a3b8;
     margin-top: 14px;
     line-height: 1.6;
+  }
+
+  .help-text {
+    font-size: 11.5px;
+    color: #94a3b8;
+    margin-top: 5px;
+  }
+
+  .file-upload {
+    border: 1.5px dashed #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .file-upload:hover {
+    border-color: #d9531e;
+    background: #fff4ee;
+  }
+
+  .file-upload input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .file-upload .file-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .file-upload .file-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #d9531e;
+  }
+
+  .file-upload .file-sub {
+    font-size: 11.5px;
+    color: #94a3b8;
+    margin-top: 3px;
+  }
+
+  .file-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .file-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff4ee;
+    border: 1px solid #fbd9c4;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 12.5px;
+    color: #7a2410;
+  }
+
+  .file-list-item .remove-file {
+    cursor: pointer;
+    color: #b83c1d;
+    font-weight: 700;
+    padding: 0 4px;
   }
 
   .success-msg {
@@ -205,7 +288,7 @@
   }
 
   .success-top {
-    background: linear-gradient(135deg, #1a6ea8, #2ec4b6);
+    background: linear-gradient(135deg, #d9531e, #f0792f);
     padding: 24px 20px;
     color: white;
   }
@@ -234,7 +317,7 @@
 
   .msg-bubble {
     background: white;
-    border-left: 3px solid #2ec4b6;
+    border-left: 3px solid #f0792f;
     border-radius: 10px;
     padding: 12px 14px;
     font-size: 13px;
@@ -246,17 +329,16 @@
 </style>
 </head>
 <body>
-
 <div class="card">
   <div class="card-header">
-    <div class="shield-icon">🛡️</div>
+    <img src="logo.png" alt="Logo SMKN Takeran Magetan" class="logo-img">
     <h1>Laporan Bullying</h1>
     <p>Ceritakan apa yang terjadi. Laporanmu akan ditangani oleh pengurus OSIS dan BK sekolah.</p>
-    <div class="anon-badge">🔒 Identitasmu aman & terjaga</div>
+    <div class="anon-badge">🔒 Identitasmu aman &amp; terjaga</div>
   </div>
 
   <div class="card-body">
-    <!-- GANTI YOUR_FORM_ID dengan ID dari Formspree kamu -->
+    <!-- GANTI form ID Formspree kamu kalau perlu -->
     <form id="reportForm" action="https://formspree.io/f/xaqgoyzz" method="POST">
 
       <div class="field">
@@ -302,7 +384,7 @@
       <div class="field">
         <label>Nomor HP yang bisa dihubungi <span class="optional">opsional</span></label>
         <input type="tel" name="nomor_hp" placeholder="Contoh: 08123456789">
-        <p style="font-size:11.5px;color:#94a3b8;margin-top:5px;">Hanya diisi jika kamu ingin kami menghubungi balik. Boleh dikosongkan.</p>
+        <p class="help-text">Hanya diisi jika kamu ingin kami menghubungi balik. Boleh dikosongkan.</p>
       </div>
 
       <div class="field">
@@ -324,6 +406,17 @@
       </div>
 
       <div class="field">
+        <label>Bukti Foto/Video <span class="optional">opsional</span></label>
+        <div class="file-upload" id="fileUploadBox">
+          <input type="file" name="bukti" id="buktiInput" accept="image/*,video/*" multiple>
+          <div class="file-icon">📎</div>
+          <div class="file-label">Ketuk untuk pilih file</div>
+          <div class="file-sub">Foto atau video, maks 10MB per file</div>
+        </div>
+        <div class="file-list" id="fileList"></div>
+      </div>
+
+      <div class="field">
         <label>Kamu butuh bantuan apa?</label>
         <select name="bantuan" required>
           <option value="" disabled selected>Pilih...</option>
@@ -338,36 +431,83 @@
 
       <button type="submit" class="btn-submit">🛡️ Kirim Laporan</button>
 
-      <div class="success-msg" id="successMsg">
-        <div class="success-top">
-          <div class="big-emoji">💙</div>
-          <h2>Laporan Berhasil Dikirim</h2>
-          <p>Butuh keberanian besar untuk melangkah seperti ini.<br>Kamu sudah melakukan hal yang benar.</p>
-        </div>
-        <div class="success-messages">
-          <div class="msg-bubble"><span class="emoji">🤝</span> <strong>Kamu tidak sendirian.</strong> Kami ada di sini dan siap membantumu melewati ini.</div>
-          <div class="msg-bubble"><span class="emoji">🛡️</span> <strong>Laporanmu aman.</strong> Identitasmu terjaga sepenuhnya dan hanya diketahui oleh OSIS & BK.</div>
-          <div class="msg-bubble"><span class="emoji">⏳</span> <strong>Kami akan segera menindaklanjuti</strong> laporanmu secepat mungkin.</div>
-          <div class="msg-bubble"><span class="emoji">💪</span> Ingat — yang terjadi padamu <strong>bukan salahmu.</strong> Kamu lebih kuat dari yang kamu kira.</div>
-          <div class="msg-bubble"><span class="emoji">🌱</span> Satu langkah kecil hari ini bisa mengubah segalanya. <strong>Terima kasih sudah berani bersuara.</strong></div>
-        </div>
-      </div>
-
       <p class="footer-note">
-        Laporan ini hanya diterima oleh pengurus OSIS & BK.<br>
+        Laporan ini hanya diterima oleh pengurus OSIS &amp; BK.<br>
         Identitasmu sepenuhnya terjaga kerahasiaannya.
       </p>
     </form>
+
+    <!-- Pesan sukses ditaruh di LUAR form, supaya tidak ikut tersembunyi saat form di-hide -->
+    <div class="success-msg" id="successMsg">
+      <div class="success-top">
+        <div class="big-emoji">💙</div>
+        <h2>Laporan Berhasil Dikirim</h2>
+        <p>Butuh keberanian besar untuk melangkah seperti ini.<br>Kamu sudah melakukan hal yang benar.</p>
+      </div>
+      <div class="success-messages">
+        <div class="msg-bubble"><span class="emoji">🤝</span> <strong>Kamu tidak sendirian.</strong> Kami ada di sini dan siap membantumu melewati ini.</div>
+        <div class="msg-bubble"><span class="emoji">🛡️</span> <strong>Laporanmu aman.</strong> Identitasmu terjaga sepenuhnya dan hanya diketahui oleh OSIS & BK.</div>
+        <div class="msg-bubble"><span class="emoji">⏳</span> <strong>Kami akan segera menindaklanjuti</strong> laporanmu secepat mungkin.</div>
+        <div class="msg-bubble"><span class="emoji">💪</span> Ingat — yang terjadi padamu <strong>bukan salahmu.</strong> Kamu lebih kuat dari yang kamu kira.</div>
+        <div class="msg-bubble"><span class="emoji">🌱</span> Satu langkah kecil hari ini bisa mengubah segalanya. <strong>Terima kasih sudah berani bersuara.</strong></div>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
+  const buktiInput = document.getElementById('buktiInput');
+  const fileList = document.getElementById('fileList');
+  const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+
+  function renderFileList() {
+    fileList.innerHTML = '';
+    const files = Array.from(buktiInput.files);
+
+    files.forEach((file, index) => {
+      const item = document.createElement('div');
+      item.className = 'file-list-item';
+
+      const sizeOk = file.size <= MAX_SIZE;
+      const sizeText = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+
+      item.innerHTML = `
+        <span>${sizeOk ? '📄' : '⚠️'} ${file.name} <span style="color:${sizeOk ? '#94a3b8' : '#b83c1d'}">(${sizeText}${sizeOk ? '' : ' — terlalu besar'})</span></span>
+        <span class="remove-file" data-index="${index}">✕</span>
+      `;
+      fileList.appendChild(item);
+    });
+
+    fileList.querySelectorAll('.remove-file').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = parseInt(btn.dataset.index, 10);
+        const dt = new DataTransfer();
+        Array.from(buktiInput.files).forEach((f, i) => {
+          if (i !== idx) dt.items.add(f);
+        });
+        buktiInput.files = dt.files;
+        renderFileList();
+      });
+    });
+  }
+
+  buktiInput.addEventListener('change', renderFileList);
+
   const form = document.getElementById('reportForm');
   const successMsg = document.getElementById('successMsg');
 
-  form.addEventListener('submit', async function(e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
+
+    const oversized = Array.from(buktiInput.files).some(f => f.size > MAX_SIZE);
+    if (oversized) {
+      alert('Ada file yang lebih dari 10MB. Hapus atau ganti file tersebut sebelum mengirim.');
+      return;
+    }
+
     const btn = form.querySelector('button[type="submit"]');
+    const originalBtnText = btn.textContent;
     btn.textContent = 'Mengirim...';
     btn.disabled = true;
 
@@ -384,13 +524,14 @@
       } else {
         btn.textContent = '❌ Gagal, coba lagi';
         btn.disabled = false;
+        setTimeout(() => { btn.textContent = originalBtnText; }, 2500);
       }
     } catch {
       btn.textContent = '❌ Gagal, coba lagi';
       btn.disabled = false;
+      setTimeout(() => { btn.textContent = originalBtnText; }, 2500);
     }
   });
 </script>
-
 </body>
 </html>
