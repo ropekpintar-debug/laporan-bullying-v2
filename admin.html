@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin — Laporan Bullying SMKN Takeran</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ================================================
+     HALAMAN LOGIN
+     ================================================ -->
+<div id="loginPage" class="login-page">
+  <div class="login-card">
+
+    <!-- Header kartu login -->
+    <div class="login-header">
+      <img src="logo.png" alt="Logo SMKN Takeran Magetan">
+      <h1>Dashboard Admin</h1>
+      <p>Sistem Laporan Bullying — SMKN Takeran Magetan</p>
+    </div>
+
+    <!-- Form login -->
+    <div class="login-body">
+      <div id="loginError" class="login-error"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="inputUsername">Username</label>
+          <input type="text" id="inputUsername" placeholder="Masukkan username" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="inputPassword">Password</label>
+          <input type="password" id="inputPassword" placeholder="Masukkan password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn-login">🔐 Masuk ke Dashboard</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ================================================
+     HALAMAN DASHBOARD (muncul setelah login)
+     ================================================ -->
+<div id="dashboardPage" class="dashboard-page">
+
+  <!-- ---- TOPBAR ---- -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <img src="logo.png" alt="Logo">
+      <div>
+        <h1>Dashboard Laporan Bullying</h1>
+        <span>SMKN Takeran Magetan</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="admin-badge">👤 Admin OSIS</span>
+      <button class="btn-logout" id="btnLogout">Keluar</button>
+    </div>
+  </div>
+
+  <!-- ---- KONTEN UTAMA ---- -->
+  <div class="main-content">
+
+    <!-- ==============================
+         KARTU STATISTIK
+         ============================== -->
+    <div class="stats-grid">
+
+      <!-- Total laporan -->
+      <div class="stat-card">
+        <div class="stat-icon">📋</div>
+        <div class="stat-info">
+          <h3 id="statTotal">0</h3>
+          <p>Total Laporan</p>
+        </div>
+      </div>
+
+      <!-- Laporan hari ini -->
+      <div class="stat-card blue">
+        <div class="stat-icon">📅</div>
+        <div class="stat-info">
+          <h3 id="statHariIni">0</h3>
+          <p>Laporan Hari Ini</p>
+        </div>
+      </div>
+
+      <!-- Belum ditangani -->
+      <div class="stat-card yellow">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-info">
+          <h3 id="statBelum">0</h3>
+          <p>Belum Ditangani</p>
+        </div>
+      </div>
+
+      <!-- Sudah selesai -->
+      <div class="stat-card green">
+        <div class="stat-icon">✅</div>
+        <div class="stat-info">
+          <h3 id="statSelesai">0</h3>
+          <p>Sudah Selesai</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==============================
+         GRAFIK 7 HARI TERAKHIR
+         ============================== -->
+    <div class="chart-section">
+      <div class="section-title">📈 Laporan 7 Hari Terakhir</div>
+      <div class="chart-bars" id="chartBars">
+        <!-- Diisi oleh admin.js → renderGrafik() -->
+      </div>
+    </div>
+
+    <!-- ==============================
+         TOOLBAR: CARI & FILTER
+         ============================== -->
+    <div class="toolbar">
+
+      <!-- Pencarian teks -->
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari nomor, nama, kelas, jurusan, jenis bullying..."
+        >
+      </div>
+
+      <!-- Filter status -->
+      <select class="filter-select" id="filterStatus">
+        <option value="">Semua Status</option>
+        <option value="baru">Baru</option>
+        <option value="diproses">Diproses</option>
+        <option value="selesai">Selesai</option>
+        <option value="ditolak">Ditolak</option>
+      </select>
+
+      <!-- Filter kelas -->
+      <select class="filter-select" id="filterKelas">
+        <option value="">Semua Kelas</option>
+        <option value="10">Kelas 10</option>
+        <option value="11">Kelas 11</option>
+        <option value="12">Kelas 12</option>
+      </select>
+
+      <!-- Filter jurusan -->
+      <select class="filter-select" id="filterJurusan">
+        <option value="">Semua Jurusan</option>
+        <option value="Teknik Komputer Jaringan (TKJ)">TKJ</option>
+        <option value="Desain Komunikasi Visual (DKV)">DKV</option>
+        <option value="Rekayasa Perangkat Lunak (RPL)">RPL</option>
+        <option value="Kuliner">Kuliner</option>
+      </select>
+
+      <!-- Filter tanggal -->
+      <input type="date" class="filter-select" id="filterTanggal">
+
+      <!-- Reset filter -->
+      <button class="btn-reset" onclick="resetFilter()">↺ Reset</button>
+
+    </div>
+
+    <!-- ==============================
+         TABEL DAFTAR LAPORAN
+         ============================== -->
+    <div class="table-section">
+
+      <div class="table-header">
+        <div class="section-title" style="margin:0">📄 Daftar Laporan</div>
+        <span class="laporan-count" id="laporanCount">0 laporan</span>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>No. Laporan</th>
+              <th>Tanggal</th>
+              <th>Pelapor</th>
+              <th>Kelas</th>
+              <th>Jurusan</th>
+              <th>Jenis</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tabelBody">
+            <!-- Diisi oleh admin.js → renderTabel() -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <!-- akhir table-section -->
+
+  </div>
+  <!-- akhir main-content -->
+
+</div>
+<!-- akhir dashboardPage -->
+
+
+<!-- ================================================
+     MODAL DETAIL LAPORAN
+     ================================================ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+
+    <!-- Header modal -->
+    <div class="modal-header">
+      <div>
+        <h2>Detail Laporan</h2>
+        <div class="nomor" id="modalNomor">BLY-2026-0000</div>
+      </div>
+      <button class="btn-close" onclick="tutupModal()">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- ---- Data Pelapor ---- -->
+      <div class="detail-group">
+        <div class="detail-group-title">👤 Data Pelapor</div>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <label>Nama Pelapor</label>
+            <div class="val" id="modalNama">-</div>
+          </div>
+          <div class="detail-item">
+            <label>Tanggal Laporan</label>
+            <div class="val" id="modalTanggal">-</div>
+          </div>
+          <div class="detail-item">
+            <label>Kelas</label>
+            <div class="val" id="modalKelas">-</div>
+          </div>
+          <div class="detail-item">
+            <label>Jurusan</label>
+            <div class="val" id="modalJurusan">-</div>
+          </div>
+          <div class="detail-item">
+            <label>Nomor HP</label>
+            <div class="val" id="modalHP">-</div>
+          </div>
+          <div class="detail-item">
+            <label>Butuh Bantuan</label>
+            <div class="val" id="modalBantuan">-</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- Data Kejadian ---- -->
+      <div class="detail-group">
+        <div class="detail-group-title">⚠️ Data Kejadian</div>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <label>Jenis Bullying</label>
+            <div class="val" id="modalJenis">-</div>
+          </div>
+          <div class="detail-item">
+            <label>Lokasi</label>
+            <div class="val" id="modalLokasi">-</div>
+          </div>
+          <div class="detail-item">
+            <label>Nama Pembully</label>
+            <div class="val" id="modalPembully">-</div>
+          </div>
+          <div class="detail-item">
+            <label>Kelas Pembully</label>
+            <div class="val" id="modalKlsPembully">-</div>
+          </div>
+          <div class="detail-item full">
+            <label>Jurusan Pembully</label>
+            <div class="val" id="modalJurPembully">-</div>
+          </div>
+          <div class="detail-item full">
+            <label>Kronologi Kejadian</label>
+            <div class="kronologi-box" id="modalKronologi">-</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- Bukti ---- -->
+      <div class="detail-group">
+        <div class="detail-group-title">📎 Bukti</div>
+        <div id="buktiWrap">-</div>
+      </div>
+
+      <!-- ---- Status Penanganan ---- -->
+      <div class="detail-group">
+        <div class="detail-group-title">🏷️ Status Penanganan</div>
+        <div class="status-select-wrap">
+          <button class="status-btn" data-status="baru"     onclick="setStatus('baru')">🔵 Baru</button>
+          <button class="status-btn" data-status="diproses" onclick="setStatus('diproses')">🟡 Diproses</button>
+          <button class="status-btn" data-status="selesai"  onclick="setStatus('selesai')">✅ Selesai</button>
+          <button class="status-btn" data-status="ditolak"  onclick="setStatus('ditolak')">❌ Ditolak</button>
+        </div>
+      </div>
+
+      <!-- ---- Catatan Admin ---- -->
+      <div class="detail-group">
+        <div class="detail-group-title">📝 Catatan Admin (tidak terlihat pelapor)</div>
+        <textarea
+          class="catatan-area"
+          id="modalCatatan"
+          placeholder="Tulis catatan penanganan internal di sini..."
+        ></textarea>
+      </div>
+
+      <!-- Tombol simpan -->
+      <button class="btn-simpan" onclick="simpanPerubahan()">💾 Simpan Perubahan</button>
+      <div class="save-success" id="saveSukses">✅ Perubahan berhasil disimpan!</div>
+
+    </div>
+    <!-- akhir modal-body -->
+
+  </div>
+  <!-- akhir modal -->
+</div>
+<!-- akhir modal-overlay -->
+
+
+<!-- Muat logika JavaScript -->
+<script src="admin.js"></script>
+
+</body>
+</html>
