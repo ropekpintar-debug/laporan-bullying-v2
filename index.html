@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan Bullying</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    background: linear-gradient(135deg, #2b0f08 0%, #7a2410 60%, #3d1004 100%);
+    min-height: 100vh;
+    padding: 30px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    background: #ffffff;
+    max-width: 520px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, #d9531e, #f0792f);
+    padding: 24px 28px 24px;
+    color: white;
+    text-align: center;
+  }
+
+  .logo-img {
+    width: 84px;
+    height: auto;
+    display: block;
+    margin: 0 auto 14px;
+  }
+
+  .shield-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin: 0 auto 14px;
+  }
+
+  .card-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .card-header p {
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+
+  .anon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .card-body {
+    padding: 28px;
+  }
+
+  .field {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 6px;
+  }
+
+  .optional {
+    font-weight: 400;
+    color: #94a3b8;
+    font-size: 11px;
+    margin-left: 4px;
+  }
+
+  input[type="text"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1a202c;
+    background: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #d9531e;
+    box-shadow: 0 0 0 3px rgba(217,83,30,0.12);
+    background: #fff;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #4a5568;
+    transition: all 0.15s;
+    background: #f8fafc;
+  }
+
+  .checkbox-item:hover {
+    border-color: #d9531e;
+    background: #fff4ee;
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #d9531e;
+    flex-shrink: 0;
+  }
+
+  .divider {
+    height: 1px;
+    background: #f1f5f9;
+    margin: 20px 0;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #d9531e, #f0792f);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.3px;
+    margin-top: 4px;
+  }
+
+  .btn-submit:hover { opacity: 0.92; }
+  .btn-submit:active { transform: scale(0.99); }
+  .btn-submit:disabled { cursor: not-allowed; opacity: 0.7; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 11.5px;
+    color: #94a3b8;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  .help-text {
+    font-size: 11.5px;
+    color: #94a3b8;
+    margin-top: 5px;
+  }
+
+  .file-upload {
+    border: 1.5px dashed #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .file-upload:hover {
+    border-color: #d9531e;
+    background: #fff4ee;
+  }
+
+  .file-upload input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .file-upload .file-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .file-upload .file-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #d9531e;
+  }
+
+  .file-upload .file-sub {
+    font-size: 11.5px;
+    color: #94a3b8;
+    margin-top: 3px;
+  }
+
+  .file-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .file-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff4ee;
+    border: 1px solid #fbd9c4;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 12.5px;
+    color: #7a2410;
+  }
+
+  .file-list-item .remove-file {
+    cursor: pointer;
+    color: #b83c1d;
+    font-weight: 700;
+    padding: 0 4px;
+  }
+
+  .success-msg {
+    display: none;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .success-top {
+    background: linear-gradient(135deg, #d9531e, #f0792f);
+    padding: 24px 20px;
+    color: white;
+  }
+
+  .big-emoji { font-size: 40px; margin-bottom: 10px; }
+
+  .success-top h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .success-top p {
+    font-size: 13px;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .success-messages {
+    background: #f8fafc;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .msg-bubble {
+    background: white;
+    border-left: 3px solid #f0792f;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #2d3748;
+    line-height: 1.6;
+    text-align: left;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-header">
+    <img src="logo.png" alt="Logo SMKN Takeran Magetan" class="logo-img">
+    <h1>Laporan Bullying</h1>
+    <p>Ceritakan apa yang terjadi. Laporanmu akan ditangani oleh pengurus OSIS dan BK sekolah.</p>
+    <div class="anon-badge">🔒 Identitasmu aman &amp; terjaga</div>
+  </div>
+
+  <div class="card-body">
+    <!-- GANTI form ID Formspree kamu kalau perlu -->
+    <form id="reportForm" action="https://formspree.io/f/xaqgoyzz" method="POST">
+
+      <div class="field">
+        <label>Nama <span class="optional">opsional</span></label>
+        <input type="text" name="nama" placeholder="Boleh dikosongkan">
+      </div>
+
+      <div class="field">
+        <label>Kelas</label>
+        <select name="kelas" required>
+          <option value="" disabled selected>Pilih kelas</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Jurusan</label>
+        <select name="jurusan" required>
+          <option value="" disabled selected>Pilih jurusan</option>
+          <option>Teknik Komputer Jaringan (TKJ)</option>
+          <option>Desain Komunikasi Visual (DKV)</option>
+          <option>Rekayasa Perangkat Lunak (RPL)</option>
+          <option>Kuliner</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Jenis Bullying <span class="optional">pilih semua yang sesuai</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" name="jenis" value="Fisik"> Fisik</label>
+          <label class="checkbox-item"><input type="checkbox" name="jenis" value="Verbal"> Verbal</label>
+          <label class="checkbox-item"><input type="checkbox" name="jenis" value="Cyberbullying"> Cyberbullying</label>
+          <label class="checkbox-item"><input type="checkbox" name="jenis" value="Sosial"> Sosial/Pengucilan</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Nama Pembully <span class="optional">opsional</span></label>
+        <input type="text" name="pembully" placeholder="Nama pelaku jika diketahui">
+      </div>
+
+      <div class="field">
+        <label>Kelas Pembully <span class="optional">opsional</span></label>
+        <select name="kelas_pembully">
+          <option value="" selected>Tidak tahu / Tidak mau menyebutkan</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Jurusan Pembully <span class="optional">opsional</span></label>
+        <select name="jurusan_pembully">
+          <option value="" selected>Tidak tahu / Tidak mau menyebutkan</option>
+          <option>Teknik Komputer Jaringan (TKJ)</option>
+          <option>Desain Komunikasi Visual (DKV)</option>
+          <option>Rekayasa Perangkat Lunak (RPL)</option>
+          <option>Kuliner</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Nomor HP yang bisa dihubungi <span class="optional">opsional</span></label>
+        <input type="tel" name="nomor_hp" placeholder="Contoh: 08123456789">
+        <p class="help-text">Hanya diisi jika kamu ingin kami menghubungi balik. Boleh dikosongkan.</p>
+      </div>
+
+      <div class="field">
+        <label>Lokasi Kejadian</label>
+        <select name="lokasi" required>
+          <option value="" disabled selected>Pilih lokasi</option>
+          <option>Di dalam kelas</option>
+          <option>Kantin</option>
+          <option>Toilet</option>
+          <option>Lapangan</option>
+          <option>Online / Media Sosial</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Kronologi Kejadian</label>
+        <textarea name="kronologi" placeholder="Ceritakan apa yang terjadi, kapan, dan bagaimana..." required></textarea>
+      </div>
+
+      <div class="field">
+        <label>Bukti Foto/Video <span class="optional">opsional</span></label>
+        <div class="file-upload" id="fileUploadBox">
+          <input type="file" name="bukti" id="buktiInput" accept="image/*,video/*" multiple>
+          <div class="file-icon">📎</div>
+          <div class="file-label">Ketuk untuk pilih file</div>
+          <div class="file-sub">Foto atau video, maks 10MB per file</div>
+        </div>
+        <div class="file-list" id="fileList"></div>
+      </div>
+
+      <div class="field">
+        <label>Kamu butuh bantuan apa?</label>
+        <select name="bantuan" required>
+          <option value="" disabled selected>Pilih...</option>
+          <option>Hanya ingin bercerita</option>
+          <option>Minta ditindaklanjuti ke guru BK</option>
+          <option>Butuh konseling</option>
+          <option>Minta perlindungan segera</option>
+        </select>
+      </div>
+
+      <div class="divider"></div>
+
+      <button type="submit" class="btn-submit">🛡️ Kirim Laporan</button>
+
+      <p class="footer-note">
+        Laporan ini hanya diterima oleh pengurus OSIS &amp; BK.<br>
+        Identitasmu sepenuhnya terjaga kerahasiaannya.
+      </p>
+    </form>
+
+    <!-- Pesan sukses ditaruh di LUAR form, supaya tidak ikut tersembunyi saat form di-hide -->
+    <div class="success-msg" id="successMsg">
+      <div class="success-top">
+        <div class="big-emoji">💙</div>
+        <h2>Laporan Berhasil Dikirim</h2>
+        <p>Butuh keberanian besar untuk melangkah seperti ini.<br>Kamu sudah melakukan hal yang benar.</p>
+      </div>
+      <div class="success-messages">
+        <div class="msg-bubble"><span class="emoji">🤝</span> <strong>Kamu tidak sendirian.</strong> Kami ada di sini dan siap membantumu melewati ini.</div>
+        <div class="msg-bubble"><span class="emoji">🛡️</span> <strong>Laporanmu aman.</strong> Identitasmu terjaga sepenuhnya dan hanya diketahui oleh OSIS & BK.</div>
+        <div class="msg-bubble"><span class="emoji">⏳</span> <strong>Kami akan segera menindaklanjuti</strong> laporanmu secepat mungkin.</div>
+        <div class="msg-bubble"><span class="emoji">💪</span> Ingat — yang terjadi padamu <strong>bukan salahmu.</strong> Kamu lebih kuat dari yang kamu kira.</div>
+        <div class="msg-bubble"><span class="emoji">🌱</span> Satu langkah kecil hari ini bisa mengubah segalanya. <strong>Terima kasih sudah berani bersuara.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const buktiInput = document.getElementById('buktiInput');
+  const fileList = document.getElementById('fileList');
+  const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+
+  function renderFileList() {
+    fileList.innerHTML = '';
+    const files = Array.from(buktiInput.files);
+
+    files.forEach((file, index) => {
+      const item = document.createElement('div');
+      item.className = 'file-list-item';
+
+      const sizeOk = file.size <= MAX_SIZE;
+      const sizeText = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+
+      item.innerHTML = `
+        <span>${sizeOk ? '📄' : '⚠️'} ${file.name} <span style="color:${sizeOk ? '#94a3b8' : '#b83c1d'}">(${sizeText}${sizeOk ? '' : ' — terlalu besar'})</span></span>
+        <span class="remove-file" data-index="${index}">✕</span>
+      `;
+      fileList.appendChild(item);
+    });
+
+    fileList.querySelectorAll('.remove-file').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = parseInt(btn.dataset.index, 10);
+        const dt = new DataTransfer();
+        Array.from(buktiInput.files).forEach((f, i) => {
+          if (i !== idx) dt.items.add(f);
+        });
+        buktiInput.files = dt.files;
+        renderFileList();
+      });
+    });
+  }
+
+  buktiInput.addEventListener('change', renderFileList);
+
+  const form = document.getElementById('reportForm');
+  const successMsg = document.getElementById('successMsg');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const oversized = Array.from(buktiInput.files).some(f => f.size > MAX_SIZE);
+    if (oversized) {
+      alert('Ada file yang lebih dari 10MB. Hapus atau ganti file tersebut sebelum mengirim.');
+      return;
+    }
+
+    const btn = form.querySelector('button[type="submit"]');
+    const originalBtnText = btn.textContent;
+    btn.textContent = 'Mengirim...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        btn.textContent = '❌ Gagal, coba lagi';
+        btn.disabled = false;
+        setTimeout(() => { btn.textContent = originalBtnText; }, 2500);
+      }
+    } catch {
+      btn.textContent = '❌ Gagal, coba lagi';
+      btn.disabled = false;
+      setTimeout(() => { btn.textContent = originalBtnText; }, 2500);
+    }
+  });
+</script>
+</body>
+</html>
